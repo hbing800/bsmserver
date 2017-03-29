@@ -11,3 +11,9 @@
 	3、api模块为项目内外部API接口，解除各模块之间的耦合，依赖 framework
 	4、web 依赖于：所有项目模块
 	5、resource模块为系统核心功能：资源管理，提供资源基础数据的管理 依赖于：framework
+
+
+所有公共变量都定义在com.ghca.easyview.im.framework.common.Global。
+读取Properties配置文件,用Global.getProperties(key)。
+
+所有模块都只依赖framework模块，其他模块间通信通过API模块转发。
