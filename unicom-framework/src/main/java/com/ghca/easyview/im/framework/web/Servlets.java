@@ -21,7 +21,7 @@ import java.util.*;
 public class Servlets {
     // -- 常用数值定义 --//
     public static final long ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
-    private final static String[] staticFiles = StringUtil.split(Global.getConfig("web.staticFile"), ",");
+    private final static String[] staticFiles = StringUtil.split(Global.getProperties("web.staticFile"), ",");
 
 
     /**

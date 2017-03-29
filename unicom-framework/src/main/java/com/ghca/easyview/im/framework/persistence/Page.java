@@ -22,7 +22,7 @@ public class Page<T> {
     private int total;//总页数
 
 
-    private int pageSize = Integer.valueOf(Global.getConfig("page.pageSize")); // 页面大小，设置为“-1”表示不进行分页（分页无效）
+    private int pageSize = Integer.valueOf(Global.getProperties("page.pageSize")); // 页面大小，设置为“-1”表示不进行分页（分页无效）
     private int first;// 首页索引
     private int last;// 尾页索引
     private int prev;// 上一页索引

@@ -146,11 +146,10 @@ public class Global {
      * @param key 需要获取的key
      * @return 配置文件key对应的value
      */
-    public static String getConfig(String key) {
+    public static String getProperties(String key) {
         logger.error("Properties  Key  = 【" + key + "】");
         String value = map.get(key);//相当于缓存
         if (value == null) {
-
             value = (String) getPropertyConfigurer().getProperty(key);
             if (StringUtils.isNotBlank(value)) {
                 map.put(key, value);

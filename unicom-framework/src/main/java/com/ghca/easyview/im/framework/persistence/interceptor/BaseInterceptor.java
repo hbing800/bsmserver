@@ -67,7 +67,7 @@ public abstract class BaseInterceptor implements Interceptor, Serializable {
      */
     protected void initProperties(Properties p) {
         Dialect dialect = null;
-        String dbType = Global.getConfig("jdbc.type");
+        String dbType = Global.getProperties("jdbc.type");
         if ("db2".equals(dbType)) {
             dialect = new DB2Dialect();
         } else if ("derby".equals(dbType)) {
