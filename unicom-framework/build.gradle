@@ -6,6 +6,10 @@ ext {
     guavaVersion = '19.0'
     commonsIoVersion = '2.4'
     codecVersion = '1.10'
+    codehausJacksonVersion = '1.9.2'
+    jacksonCoreVserion = '2.6.4'
+    fastjsonVersion = '1.2.7'
+    poiVersion = '3.14'
 }
 
 dependencies {
@@ -15,8 +19,22 @@ dependencies {
             "commons-beanutils:commons-beanutils:$commonsBeanutilsVersion",
             "com.google.guava:guava:$guavaVersion",
             "commons-io:commons-io:$commonsIoVersion",
-            "commons-codec:commons-codec:$codecVersion"
-    )
+            "commons-codec:commons-codec:$codecVersion",
+            "org.apache.poi:poi:$poiVersion",
+            "org.apache.poi:poi-ooxml:$poiVersion")
+
+    //Jackson
+    compile(
+            "org.codehaus.jackson:jackson-core-asl:$codehausJacksonVersion",
+            "org.codehaus.jackson:jackson-mapper-asl:$codehausJacksonVersion",
+            "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVserion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonCoreVserion",
+            "com.fasterxml.jackson.core:jackson-annotations:$jacksonCoreVserion",
+            "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:$jacksonCoreVserion")
+
+    //alibaba:fastjson
+    compile(
+            "com.alibaba:fastjson:$fastjsonVersion")
 
 }
 
