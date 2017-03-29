@@ -1,0 +1,12 @@
+description = "Unicom-Resource"
+
+dependencies {
+
+    compile project(":unicom-framework")
+
+}
+
+task "mkdirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}

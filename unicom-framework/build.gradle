@@ -1,0 +1,27 @@
+description = "Unicom-Framework[Base]"
+
+ext {
+    commonslangVersion = '3.3.2'
+    commonsBeanutilsVersion = '1.9.2'
+    guavaVersion = '19.0'
+    commonsIoVersion = '2.4'
+    codecVersion = '1.10'
+}
+
+dependencies {
+
+    compile(
+            "org.apache.commons:commons-lang3:$commonslangVersion",
+            "commons-beanutils:commons-beanutils:$commonsBeanutilsVersion",
+            "com.google.guava:guava:$guavaVersion",
+            "commons-io:commons-io:$commonsIoVersion",
+            "commons-codec:commons-codec:$codecVersion"
+    )
+
+}
+
+task "mkdirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+

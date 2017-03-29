@@ -1,0 +1,13 @@
+框架代码模块
+	1、基础框架模块（unicom-framework）
+	2、系统管理（unicom-security）
+	3、接口（unicom-api）
+	4、页面（unicom-web）
+	5、资源模块（unicom-resource）
+
+模块间的依赖
+	1、framework模块为框架基础模块，提供工具类、基类，不依赖与框架任何模块
+	2、security模块为框架用户、角色、权限等管理，并同步用户信息给framework模块，仅依赖于framework模块
+	3、api模块为项目内外部API接口，解除各模块之间的耦合，依赖 framework
+	4、web 依赖于：所有项目模块
+	5、resource模块为系统核心功能：资源管理，提供资源基础数据的管理 依赖于：framework

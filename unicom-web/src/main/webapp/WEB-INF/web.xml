@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <display-name>EasyView IM</display-name>
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- Apache Shiro -->
+    <!--<filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+
+
+    <!-- easyview-im-web\src\main\resources\ev.properties （loginMode=1 cas登录，才启用以下单点登录的内容） -->
+    <!-- ======================== 单点登录开始 ======================== -->
+    <!--1.用于单点退出 -->
+    <!-- 用于单点退出，该过滤器用于实现单点登出功能，可选配置-->
+    <!--<listener>
+        <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+    </listener>
+
+    &lt;!&ndash; 该过滤器用于实现单点登出功能，可选配置。 &ndash;&gt;
+    <filter>
+        <filter-name>CAS Single Sign Out Filter</filter-name>
+        <filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CAS Single Sign Out Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    &lt;!&ndash;2.负责Ticket校验&ndash;&gt;
+    &lt;!&ndash; 该过滤器负责对Ticket的校验工作，必须启用它 &ndash;&gt;
+    <filter>
+        <filter-name>CAS Validation Filter</filter-name>
+        <filter-class>
+            org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter</filter-class>
+        <init-param>
+            <param-name>casServerUrlPrefix</param-name>
+            <param-value>http://120.52.121.79:8888/cas-server-webapp-3.4.11/</param-value>&lt;!&ndash; 此处必须为登录url/cas/，带有任何其它路径都会报错，如“https://sso.castest.com:8443/cas/login”,这样也会报错。 &ndash;&gt;
+        </init-param>
+        <init-param>
+            <param-name>serverName</param-name>
+            <param-value>http://192.168.0.88:8080</param-value>
+        </init-param>
+        <init-param>
+            <param-name>useSession</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>exceptionOnValidationFailure</param-name>
+            <param-value>false</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>redirectAfterValidation</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CAS Validation Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    &lt;!&ndash; 3. 单点登录验证 &ndash;&gt;
+    &lt;!&ndash; 该过滤器负责用户的认证工作，必须启用它 &ndash;&gt;
+    <filter>
+        <filter-name>CASFilter</filter-name>
+        <filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>casServerLoginUrl</param-name>
+            <param-value>http://120.52.121.79:8888/cas-server-webapp-3.4.11/login</param-value>
+            &lt;!&ndash;这里的server是服务端的IP&ndash;&gt;
+        </init-param>
+        <init-param>
+            <param-name>serverName</param-name>
+            <param-value>http://192.168.0.88:8080</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CASFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    &lt;!&ndash; 4.  &ndash;&gt;
+    &lt;!&ndash;
+            该过滤器负责实现HttpServletRequest请求的包裹，
+            比如允许开发者通过HttpServletRequest的getRemoteUser()方法获得SSO登录用户的登录名，可选配置。
+    &ndash;&gt;
+    <filter>
+        <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+        <filter-class>
+            org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    &lt;!&ndash; 5.  &ndash;&gt;
+    &lt;!&ndash;
+            该过滤器使得开发者可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。
+            比如AssertionHolder.getAssertion().getPrincipal().getName()。
+    &ndash;&gt;
+    <filter>
+        <filter-name>CAS Assertion Thread Local Filter</filter-name>
+        <filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>
+    </filter>-->
+
+    <!--统一门户 -->
+    <!--<filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.ghca.easyview.im.core.filter.LoginFilter</filter-class>
+    </filter>-->
+
+    <!--<filter-mapping>
+        <filter-name>CAS Assertion Thread Local Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+
+    <!--统一门户 拦截路径-->
+    <!--<filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+
+    <!-- ======================== 单点登录结束 ======================== -->
+
+    <!-- MVC Servlet -->
+    <servlet>
+        <servlet-name>springServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:/spring-mvc*.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+        <listener-class>com.ghca.easyview.im.framework.sys.listener.CustomContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            <!--多个文件，逗号分隔（,），为的是可以实现按需加载配置文件-->
+            classpath:spring-context.xml,
+            classpath:spring-mq.xml
+        </param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+
+    <!-- DruidStatView begin-->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <param-name>allow</param-name>
+            <param-value>192.168.0.88</param-value>
+        </init-param>
+
+        <!--
+           在StatViewSerlvet输出的html页面中，有一个功能是Reset All，执行这个操作之后，会导致所有计数器清零，重新计数。你可以通过配置参数关闭它。
+        -->
+        <init-param>
+            <param-name>resetEnable</param-name>
+            <param-value>false</param-value>
+        </init-param>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+        <init-param>
+            <param-name>exclusions</param-name>
+            <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+        </init-param>
+
+
+        <init-param>
+            <param-name>profileEnable</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+    </filter>
+
+    <filter-mapping>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- DruidStatView end-->
+
+    <!--　浏览器不支持put,delete等method,由该filter将/blog?_method=delete转换为标准的http　delete方法　-->
+    <filter>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <servlet-name>springServlet</servlet-name>
+    </filter-mapping>
+    　
+    <!-- 未捕获异常的处理 -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/error/500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/error/404.jsp</location>
+    </error-page>
+
+    <!-- session过期  90分钟 -->
+    <session-config>
+        <session-timeout>90</session-timeout>
+    </session-config>
+
+
+
+</web-app>
