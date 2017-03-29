@@ -1,10 +1,11 @@
 package com.ghca.easyview.im.framework.common;
 
 import com.ghca.easyview.im.framework.loader.PropertiesLoader;
+import com.ghca.easyview.im.framework.util.SpringContextHolderUtil;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
@@ -14,14 +15,23 @@ import java.util.Map;
  */
 public class Global {
 
-    @Autowired
+    private static Logger logger = LoggerFactory.getLogger(Global.class);
+
     private  static PropertiesLoader propertyConfigurer;
+
+    private static PropertiesLoader getPropertyConfigurer(){
+        if(propertyConfigurer == null){
+            propertyConfigurer = SpringContextHolderUtil.getBean("propertyConfigurer");
+        }
+        return propertyConfigurer;
+    }
+
 
 
     /**
      * 实例对象
      */
-    private static Global global = new Global();
+//    private static Global global = new Global();
 
 
     /**
@@ -125,9 +135,9 @@ public class Global {
      *
      * @return {@value}
      */
-    public static Global getInstance() {
-        return global;
-    }
+//    public static Global getInstance() {
+//        return global;
+//    }
 
 
     /**
@@ -137,14 +147,16 @@ public class Global {
      * @return 配置文件key对应的value
      */
     public static String getConfig(String key) {
-        String value = map.get(key);
+        logger.error("Properties  Key  = 【" + key + "】");
+        String value = map.get(key);//相当于缓存
         if (value == null) {
-            value = (String) propertyConfigurer.getProperty(key);
+
+            value = (String) getPropertyConfigurer().getProperty(key);
             if (StringUtils.isNotBlank(value)) {
                 map.put(key, value);
-
             }
         }
+        logger.error("Properties value = 【" + value + "】");
         return value;
     }
 

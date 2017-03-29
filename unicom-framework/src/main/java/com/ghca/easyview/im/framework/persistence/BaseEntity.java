@@ -138,10 +138,10 @@ public abstract class BaseEntity<T> implements Serializable {
     /**
      * 全局变量对象
      */
-    @JsonIgnore
-    public Global getGlobal() {
-        return Global.getInstance();
-    }
+//    @JsonIgnore
+//    public Global getGlobal() {
+//        return Global.getInstance();
+//    }
 
     /**
      * 获取数据库名称
