@@ -7,3 +7,5 @@ classes/
 **/build/
 # 忽略根目录下的 /.idea/ 目录的全部内容；
 /.idea/*
+# 忽略根目录下的 /.gradle/ 目录的全部内容；
+/.gradle/*
