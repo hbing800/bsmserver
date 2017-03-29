@@ -9,3 +9,5 @@ classes/
 /.idea/*
 # 忽略根目录下的 /.gradle/ 目录的全部内容；
 /.gradle/*
+# 忽略根目录下的 /.git/ 目录的全部内容；
+/.git/*
