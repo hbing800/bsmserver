@@ -73,9 +73,9 @@
         <!--<property name="driverClassName" value="${jdbc.driver}"/>-->
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="root"/>
+        <property name="username" value="${jdbc.username}"/>
         <!--<property name="password" value="UN2016@ghca"/>-->
-        <property name="password" value="root"/>
+        <property name="password" value="${jdbc.password}"/>
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="${jdbc.pool.init}"/>
@@ -99,9 +99,9 @@
         <!-- 打开PSCache，并且指定每个连接上PSCache的大小（Oracle使用） 是否缓存preparedStatement，也就是PSCache。
         PSCache对支持游标的数据库性能提升巨大，比如说oracle。
         在mysql5.5以下的版本中没有PSCache功能，建议关闭掉。
-        5.5及以上版本有PSCache，建议开启。
+        5.5及以上版本有PSCache，建议开启。-->
         <property name="poolPreparedStatements" value="true" />
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" /> -->
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
 
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat,config"/>
