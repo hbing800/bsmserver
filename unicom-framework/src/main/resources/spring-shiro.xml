@@ -20,7 +20,7 @@
                 /login.html*=anon
                 /logout.html*=anon
                 /error/noperms.jsp*= anon
-                /common/**=anon
+                /static/**=anon
                 /resource/**=anon
                 /*.ico=anon
                 /admin/install/**=anon
