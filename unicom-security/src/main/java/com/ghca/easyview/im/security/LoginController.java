@@ -29,22 +29,16 @@ public class LoginController {
      * 跳转到登陆页面
      * @return
      */
-    @RequestMapping(value = "/login.html",method = RequestMethod.GET)
-    public ModelAndView login(){
-        ModelAndView modelView = new ModelAndView();
-        modelView.setViewName("login");//默认直接跳转到登陆界面
-        return modelView;
-    }
-
-
-    /**
-     * 跳转到登陆页面
-     * @return
-     */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public ModelAndView login1(){
         ModelAndView modelView = new ModelAndView();
-        modelView.setViewName("login");//默认直接跳转到登陆界面
+//        modelView.setViewName("login");//默认直接跳转到登陆界面
+        if(1==2){
+            modelView.setViewName("redirect:/index.html");
+        }else{
+            modelView.setViewName("redirect:/login.html");
+        }
+
         return modelView;
     }
     /**

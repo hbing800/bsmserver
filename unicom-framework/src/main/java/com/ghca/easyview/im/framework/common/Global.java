@@ -1,7 +1,7 @@
 package com.ghca.easyview.im.framework.common;
 
 import com.ghca.easyview.im.framework.loader.PropertiesLoader;
-import com.ghca.easyview.im.framework.util.SpringContextHolderUtil;
+import com.ghca.easyview.im.framework.util.SpringContextUtil;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class Global {
 
     private static PropertiesLoader getPropertyConfigurer(){
         if(propertyConfigurer == null){
-            propertyConfigurer = SpringContextHolderUtil.getBean("propertyConfigurer");
+            propertyConfigurer = SpringContextUtil.getBean("propertyConfigurer");
         }
         return propertyConfigurer;
     }

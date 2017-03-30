@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Lazy(false)
-public class SpringContextHolderUtil implements ApplicationContextAware, DisposableBean {
+public class SpringContextUtil implements ApplicationContextAware, DisposableBean {
 
     private static ApplicationContext applicationContext = null;
 
-    private static Logger logger = LoggerFactory.getLogger(SpringContextHolderUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(SpringContextUtil.class);
 
     /**
      * 取得存储在静态变量中的ApplicationContext.
@@ -64,11 +64,11 @@ public class SpringContextHolderUtil implements ApplicationContextAware, Disposa
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         logger.debug("注入ApplicationContext到SpringContextHolder:{}", applicationContext);
-        if (SpringContextHolderUtil.applicationContext != null) {
-            logger.info("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextHolderUtil.applicationContext);
+        if (SpringContextUtil.applicationContext != null) {
+            logger.info("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextUtil.applicationContext);
         }
 
-        SpringContextHolderUtil.applicationContext = applicationContext;
+        SpringContextUtil.applicationContext = applicationContext;
     }
 
     /**
@@ -76,7 +76,7 @@ public class SpringContextHolderUtil implements ApplicationContextAware, Disposa
      */
     @Override
     public void destroy() throws Exception {
-        SpringContextHolderUtil.clearHolder();
+        SpringContextUtil.clearHolder();
     }
 
     /**
