@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>系统登录</title>
+  <title><fmt:message key="mscLogin.login"/></title>
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
   <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
   <META HTTP-EQUIV="Expires" CONTENT="0">
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="${rootRes}/css/simple-line-icons.css" type="text/css" />
   <link rel="stylesheet" href="${rootRes}/css/font.css" type="text/css" />
   <link rel="stylesheet" href="${rootRes}/css/app.css" type="text/css" />
+  <link rel="stylesheet" href="${rootRes}/css/login.css" type="text/css" />
 
   <script src="${rootRes}/js/libs/angularjs/angular1.4.0/angular.js"></script>
   <script src="${rootRes}/js/libs/angularjs/angular1.4.0/angular-ui-router.min.js"></script>
@@ -22,41 +23,41 @@
   <script src="${rootPath}/resource/core/login/mscLoginCtrl.js" type="text/javascript" ></script>
 </head>
 <body>
-<div ng-app="loginApp">
-<div class="container w-xxl w-auto-xs" ng-controller="loginFormController">
-  <p class="navbar-brand block m-t"><fmt:message key="mscLogin.module"/> </p>
-  <div class="m-b-lg">
-    <%--<div class="wrapper text-center">--%>
-      <%--<strong>Sign in to get in touch</strong>--%>
-    <%--</div>--%>
-    <form name="form" class="form-validation">
-      <div class="text-danger wrapper text-center" ng-show="authError">
-        {{errorInfo}}
-      </div>
-      <div class="list-group list-group-sm">
-        <div class="list-group-item">
-          <label ><fmt:message key="mscLogin.userName"/></label>
-          <input type="text" placeholder="<fmt:message key="mscLogin.userName"/> " class="form-control no-border" ng-model="loginForm.userName" required>
+<div ng-app="loginApp" style="overflow: hidden;">
+  <div class="container w-xxl w-auto-xs" ng-controller="loginFormController">
+    <div class="m-b-lg">
+      <form name="form" class="form-horizontal">
+        <div class="mycenter">
+          <div class="mysign">
+            <div class="col-lg-11 text-center text-info">
+              <h2><fmt:message key="mscLogin.login"/></h2>
+            </div>
+            <div class="col-lg-11 text-danger wrapper text-center" ng-show="authError">
+              {{errorInfo}}
+            </div>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" ng-model="loginForm.userName" placeholder="<fmt:message key="mscLogin.userName.please"/>" required autofocus/>
+            </div>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-10">
+              <input type="password" class="form-control" ng-model="loginForm.pwd" placeholder="<fmt:message key="mscLogin.pwd.please"/>" required autofocus/>
+            </div>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-10">
+              <button type="button" class="btn btn-success col-lg-12" ng-click="login()"><fmt:message key="mscLogin.login"/></button>
+            </div>
+          </div>
         </div>
-        <div class="list-group-item">
-          <label ><fmt:message key="mscLogin.pwd"/></label>
-          <input type="password" placeholder="<fmt:message key="mscLogin.pwd"/>" class="form-control no-border" ng-model="loginForm.pwd" required>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-disabled='form.$invalid'><fmt:message key="mscLogin.login"/></button>
-      <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd"><fmt:message key="mscLogin.forgotPwd"/></a></div>
-      <div class="line line-dashed"></div>
-      <%--<p class="text-center"><small>Do not have an account?</small></p>--%>
-      <%--<a ui-sref="access.signup" class="btn btn-lg btn-default btn-block">mscLogin.register</a>--%>
 
-    </form>
+      </form>
+    </div>
   </div>
 </div>
-</div>
+
 <script>
   var G = {};
   G.path ={
-    RootPath:'${rootPath}',//跟目录
+    RootPath:'${rootPath}',//根目录
     serverRootPath:"",//服务请求根路径
     ResPath:"${rootRes}",//资源文件根路径
     TemplatePath:"${rootTemplate}",//模板路径

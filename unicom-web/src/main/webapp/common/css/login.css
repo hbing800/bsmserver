@@ -1,0 +1,39 @@
+body {
+    background:url(../../common/img/login.jpg) no-repeat center center;
+    background-size: cover;
+}
+.mycenter{
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    width:500px;
+    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.mycenter .mysign{
+    width: 440px;
+}
+.mycenter input,checkbox,button{
+    margin-top:2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.mycheckbox{
+    margin-top:10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    height: 10px;
+}
+
+.form-horizontal{
+    background: #fff;
+    padding-bottom: 40px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.mysign div{
+    margin-bottom: 15px;
+}

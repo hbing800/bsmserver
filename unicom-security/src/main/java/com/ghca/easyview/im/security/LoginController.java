@@ -66,7 +66,7 @@ public class LoginController {
         }
         String encryptPwd= PasswordUtil.encrypt(user.getUserName(), user.getPwd(), PasswordUtil.getStaticSalt());
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),encryptPwd);
-        token.setRememberMe(true);
+//        token.setRememberMe(true);
         try {
             currentUser.login(token);
         } catch (AuthenticationException e) {
