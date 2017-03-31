@@ -2,6 +2,8 @@ package com.ghca.easyview.im.security;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ghca.easyview.im.framework.entity.User;
+import com.ghca.easyview.im.framework.util.PasswordUtil;
+import com.ghca.easyview.im.framework.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -29,16 +31,10 @@ public class LoginController {
      * 跳转到登陆页面
      * @return
      */
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public ModelAndView login1(){
+    @RequestMapping(value = "/login")
+    public ModelAndView login(){
         ModelAndView modelView = new ModelAndView();
-//        modelView.setViewName("login");//默认直接跳转到登陆界面
-        if(1==2){
-            modelView.setViewName("redirect:/index.html");
-        }else{
-            modelView.setViewName("redirect:/login.html");
-        }
-
+        modelView.setViewName("login");//默认直接跳转到登陆界面
         return modelView;
     }
     /**
@@ -48,7 +44,7 @@ public class LoginController {
      * @param request
      * @return
      */
-    /*@ResponseBody
+    @ResponseBody
     @RequestMapping(value = "/submitLogin")
     public String submitLogin(User user,HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 
@@ -90,10 +86,10 @@ public class LoginController {
         }
     }
 
-    *//**
+    /**
      * 返回重定向的页面地址
      * @param request
-     *//*
+     */
     protected String redirectUrl(HttpServletRequest request){
         String targetUrl=request.getParameter("targetUrl");//获取目标url
         if(StringUtil.isNull(targetUrl)){
@@ -113,7 +109,7 @@ public class LoginController {
         }
         return targetUrl;
     }
-    *//**
+    /**
      * 重定向到目标页面
      * @param request
      * @param response

@@ -71,6 +71,26 @@ public class StringUtil extends org.apache.commons.lang3.StringUtils {
     }
 
     /**
+     * 判断一个字符串是否为null或空
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isNull(String str) {
+        return str == null || str.trim().length() == 0;
+    }
+
+    /**
+     * 判断一个字符串是否为null或空
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isNotNull(String str) {
+        return !isNull(str);
+    }
+
+    /**
      * 替换掉HTML标签方法
      */
     public static String replaceHtml(String html) {

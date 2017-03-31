@@ -5,7 +5,7 @@
     <description>Shiro 配置</description>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
-        <property name="loginUrl" value="/login" />
+        <property name="loginUrl" value="/login.html" />
         <!--<property name="unauthorizedUrl" value="/error/noperms.jsp" />-->
         <property name="filters">
             <map>
@@ -18,10 +18,9 @@
             <value>
                 /submitLogin.html*=anon
                 /login.html*=anon
-                /index.html*=anon
                 /logout.html*=anon
                 /error/noperms.jsp*= anon
-                /static/**=anon
+                /common/**=anon
                 /resource/**=anon
                 /*.ico=anon
                 /admin/install/**=anon

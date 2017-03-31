@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/static/jsp/taglib.jsp"%>
+<%@include file="/common/jsp/global.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +9,17 @@
   <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
   <META HTTP-EQUIV="Expires" CONTENT="0">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="${ctxStatic}/css/bootstrap.css" type="text/css" />
-  <link rel="stylesheet" href="${ctxStatic}/css/animate.css" type="text/css" />
-  <link rel="stylesheet" href="${ctxStatic}/css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="${ctxStatic}/css/simple-line-icons.css" type="text/css" />
-  <link rel="stylesheet" href="${ctxStatic}/css/font.css" type="text/css" />
-  <link rel="stylesheet" href="${ctxStatic}/css/app.css" type="text/css" />
-  <script src="${ctxStatic}/plugin/angular1.4.0/angular.js"></script>
-  <script src="${ctxStatic}/plugin/angular1.4.0/angular-ui-router.min.js"></script>
-  <script src="${ctxStatic}/plugin/seajs/sea.js"></script>
-  <script src="${ctxStatic}/resource/core/login/loginApp.js" type="text/javascript" ></script>
+  <link rel="stylesheet" href="${rootRes}/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="${rootRes}/css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="${rootRes}/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="${rootRes}/css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="${rootRes}/css/font.css" type="text/css" />
+  <link rel="stylesheet" href="${rootRes}/css/app.css" type="text/css" />
+
+  <script src="${rootRes}/js/libs/angularjs/angular1.4.0/angular.js"></script>
+  <script src="${rootRes}/js/libs/angularjs/angular1.4.0/angular-ui-router.min.js"></script>
+  <script src="${rootRes}/js/libs/seajs/sea.js"></script>
+  <script src="${rootPath}/resource/core/login/mscLoginCtrl.js" type="text/javascript" ></script>
 </head>
 <body>
 <div ng-app="loginApp">
@@ -55,9 +56,9 @@
 <script>
   var G = {};
   G.path ={
-    RootPath:'${ctxStatic}',//跟目录
+    RootPath:'${rootPath}',//跟目录
     serverRootPath:"",//服务请求根路径
-    ResPath:"${ctxStatic}",//资源文件根路径
+    ResPath:"${rootRes}",//资源文件根路径
     TemplatePath:"${rootTemplate}",//模板路径
     modulePath:"",//模块模板路径 由模块设定
     moduleResPath:"",//模块资源位置

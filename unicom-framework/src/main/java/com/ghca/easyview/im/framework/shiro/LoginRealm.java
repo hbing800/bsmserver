@@ -1,5 +1,7 @@
 package com.ghca.easyview.im.framework.shiro;
 
+import com.ghca.easyview.im.framework.entity.User;
+import com.ghca.easyview.im.framework.util.PasswordUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -28,15 +30,19 @@ public class LoginRealm  extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		/* 这里编写认证代码 */
-//        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-//        IUserModel user =null;
-//        try {
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        User user =null;
+        try {
+            user = new User();
+            user.setUserName("admin");
+            String encryptPwd= PasswordUtil.encrypt("admin", "Admin2016", PasswordUtil.getStaticSalt());
+            user.setPwd(encryptPwd);
 //            user= ModuleBeanUtil.getInstance().getUserService().findByUserName(token.getUsername());//baseGroupInterfacesService.findByLoginName(token.getUsername());
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-        if (1 == 1) {
-            return new SimpleAuthenticationInfo("admin", "admin", getName());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (user != null) {
+            return new SimpleAuthenticationInfo(user.getUserName(), user.getPwd(), getName());
         }
         return null;
 
