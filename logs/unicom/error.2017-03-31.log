@@ -1,4 +1,0 @@
-2017-03-31 17:09:14,005 [Daemon worker] ERROR com.ghca.easyview.im.framework.common.Global - Properties  Key  = ¡¾jdbc.type¡¿
-2017-03-31 17:09:14,007 [Daemon worker] ERROR com.ghca.easyview.im.framework.common.Global - Properties value = ¡¾mysql¡¿
-2017-03-31 17:19:31,496 [Daemon worker] ERROR com.ghca.easyview.im.framework.common.Global - Properties  Key  = ¡¾jdbc.type¡¿
-2017-03-31 17:19:31,499 [Daemon worker] ERROR com.ghca.easyview.im.framework.common.Global - Properties value = ¡¾mysql¡¿
