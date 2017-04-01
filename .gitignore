@@ -11,3 +11,5 @@ classes/
 /.gradle/*
 # 忽略根目录下的 /.git/ 目录的全部内容；
 /.git/*
+# 忽略 logs/ 目录下的所有文件
+logs/
