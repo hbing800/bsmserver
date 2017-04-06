@@ -51,8 +51,12 @@ define(function (require, exports, module) {
             $scope.langs = {en:'English', zh_CN:'中文'};
             $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "中文";
             $scope.setLang = function(langKey, $event) {
+                console.log($scope.selectLang);
                 // set the current lang
                 $scope.selectLang = $scope.langs[langKey];
+                console.log($scope.selectLang);
+                console.log(langKey);
+                $translate.preferredLanguage(langKey);
                 // You can change the language during runtime
                 $translate.use(langKey);
                 $scope.lang.isopen = !$scope.lang.isopen;

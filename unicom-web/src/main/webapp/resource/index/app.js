@@ -30,6 +30,18 @@ define(function (require, exports, module) {
             }]
         ).config(['$translateProvider', function($translateProvider){
 
+            $translateProvider.translations('en',{
+                'firstPage':'firstPage',
+                'userManager':'userManager'
+            });
+
+            $translateProvider.translations('zh',{
+                'firstPage':'首页',
+                'userManager':'用户管理'
+            });
+
+            //$translateProvider.preferredLanguage('zh');
+
             // Register a loader for the static files
             // So, the module will search missing translation tables under the specified urls.
             // Those urls are [prefix][langKey][suffix].
